@@ -4,6 +4,7 @@ import { redis as redisConfig } from '../../config';
 
 const client = redis.createClient({
   host: redisConfig.host,
+  port: redisConfig.port,
 });
 
 client.on('error', (err: Error): void => {
