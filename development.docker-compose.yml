@@ -9,7 +9,7 @@ services:
       - NODE_ENV=development
       - PORT=3000
       - REDIS_HOST=redis
-      - CACHE_EXPIRE=10000
+      - CACHE_EXPIRE_TIME=10000
       - CACHE_CAPACITY=10
     volumes:
       - ./src:/usr/src/app/src
