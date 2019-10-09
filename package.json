@@ -36,5 +36,8 @@
     "hooks": {
       "pre-push": "npm run eslint"
     }
+  },
+  "dependencies": {
+    "redis": "^2.8.0"
   }
 }
