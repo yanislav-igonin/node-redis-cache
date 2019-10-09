@@ -1,0 +1,40 @@
+{
+  "name": "show_spb_bot",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node build/index.js",
+    "build": "tsc -p .",
+    "dev": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/index.ts",
+    "eslint": "eslint --ext .js,.ts ./src",
+    "eslint:fix": "eslint --ext .js,.ts ./src --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/yanislav-igonin/show_spb_bot.git"
+  },
+  "author": "Yanislav Igonin <jan.oasis@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/yanislav-igonin/show_spb_bot/issues"
+  },
+  "homepage": "https://gitlab.com/yanislav-igonin/show_spb_bot#readme",
+  "devDependencies": {
+    "@types/node": "^12.7.9",
+    "@typescript-eslint/eslint-plugin": "^2.3.2",
+    "@typescript-eslint/parser": "^2.3.2",
+    "eslint": "^6.5.1",
+    "eslint-config-airbnb-typescript": "^5.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "husky": "^3.0.8",
+    "nodemon": "^1.19.3",
+    "ts-node": "^8.4.1",
+    "typescript": "^3.6.3"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "npm run eslint"
+    }
+  }
+}
