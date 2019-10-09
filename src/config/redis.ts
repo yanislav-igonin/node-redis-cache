@@ -2,8 +2,10 @@ interface IRedisConfig {
   host: string;
 }
 
+const { REDIS_HOST } = process.env;
+
 const redis: IRedisConfig = {
-  host: process.env.REDIS_HOST || 'localhost',
+  host: REDIS_HOST || 'localhost',
 };
 
 export default redis;
