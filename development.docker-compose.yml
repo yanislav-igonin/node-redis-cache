@@ -7,7 +7,11 @@ services:
       dockerfile: development.Dockerfile
     environment:
       - NODE_ENV=development
+      - REDIS_HOST=redis
     volumes:
       - ./src:/usr/src/app/src
     ports:
       - 9229:9229
+
+  redis:
+    image: redis:alpine
