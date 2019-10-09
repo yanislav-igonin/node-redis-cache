@@ -8,10 +8,10 @@ const getRedis = (): IRedisClient => {
     host: redisConfig.host,
   });
 
+  // @ts-ignore
   return {
     ...client,
     getAsync: promisify(client.get).bind(client),
-    setAsync: promisify(client.set).bind(client),
   };
 };
 
