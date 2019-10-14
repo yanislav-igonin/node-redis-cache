@@ -1,11 +1,11 @@
 import { createServer, IncomingMessage, ServerResponse } from 'http';
-import { redis } from './modules';
+import { cache } from './modules';
 import { app } from './config';
 
 const handler = async (req: IncomingMessage, res: ServerResponse): Promise<void> => {
   if (req.method === 'GET') {
     const key = req.url ? req.url.split('/')[1] : '';
-    const value = await redis.getAsync(key);
+    const value = await cache.get(key);
     res.end(value);
   }
 };
