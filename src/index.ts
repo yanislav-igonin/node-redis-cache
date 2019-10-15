@@ -6,6 +6,9 @@ const handler = async (req: IncomingMessage, res: ServerResponse): Promise<void>
   if (req.method === 'GET') {
     const key = req.url ? req.url.split('/')[1] : '';
     const value = await cache.get(key);
+    if (value === null) {
+      res.statusCode = 404;
+    }
     res.end(value);
   }
 };

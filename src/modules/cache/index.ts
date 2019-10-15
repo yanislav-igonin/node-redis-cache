@@ -27,12 +27,14 @@ const add = async (key: string, value: string): Promise<void> => {
   currentCacheFullness += 1;
 };
 
-const get = async (key: string): Promise<string> => {
+const get = async (key: string): Promise<string | null> => {
   let value = cache.get(key);
 
   if (value === undefined) {
     value = await redis.getAsync(key);
-    await add(key, value);
+    if (value !== null) {
+      await add(key, value);
+    }
   }
 
   return value;
