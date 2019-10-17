@@ -3,3 +3,6 @@ dev:
 
 test:
 	
+
+prod:
+	docker-compose -f production.docker-compose.yml up --build
