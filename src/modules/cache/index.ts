@@ -10,13 +10,11 @@ const findMinUsedCacheKey = (): string => {
   const values = Array.from(cacheHitCount);
 
   const sorted = values.sort((a, b) => a[1] - b[1]);
-  console.log('DEBUG: sorted', sorted);
 
   return sorted[0][0];
 };
 
 const remove = (key: string): void => {
-  // console.log(`remove -> key: ${key}`);
   cache.delete(key);
   cacheHitCount.delete(key);
   clearTimeout(cacheExpiration.get(key));
@@ -24,15 +22,12 @@ const remove = (key: string): void => {
 };
 
 const update = (key: string): void => {
-  // console.log(`update -> key: ${key}`);
   cacheExpiration.get(key).refresh();
   cacheHitCount.set(key, cacheHitCount.get(key) + 1);
 };
 
 const add = async (key: string, value: string): Promise<void> => {
-  // console.log(`add -> key: ${key}, value: ${value}`);
   if (cache.size >= cacheConfig.capacity) {
-    // console.log('cache full');
     minUsedCacheKey = findMinUsedCacheKey();
     remove(minUsedCacheKey);
   }
@@ -43,7 +38,6 @@ const add = async (key: string, value: string): Promise<void> => {
 };
 
 const get = async (key: string): Promise<string | null> => {
-  // console.log(`get -> key: ${key}`);
   let value = cache.get(key);
 
   if (value === undefined) {
@@ -55,8 +49,6 @@ const get = async (key: string): Promise<string | null> => {
   } else {
     update(key);
   }
-
-  // console.log('==========================');
 
   return value;
 };
