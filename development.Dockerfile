@@ -6,4 +6,6 @@ COPY package-lock.json ./
 
 RUN npm i
 
+COPY tsconfig.json ./
+
 CMD ["npm", "run", "dev"]
