@@ -4,7 +4,6 @@ import { cache as cacheConfig } from '../../config';
 const cache = new Map();
 const cacheHitCount = new Map();
 const cacheExpiration = new Map();
-let minUsedCacheKey: string;
 
 const findMinUsedCacheKey = (): string => {
   const values = Array.from(cacheHitCount);
@@ -28,8 +27,7 @@ const update = (key: string): void => {
 
 const add = async (key: string, value: string): Promise<void> => {
   if (cache.size >= cacheConfig.capacity) {
-    minUsedCacheKey = findMinUsedCacheKey();
-    remove(minUsedCacheKey);
+    remove(findMinUsedCacheKey());
   }
 
   cache.set(key, value);
