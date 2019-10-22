@@ -1,0 +1,27 @@
+version: '3.7'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: production.Dockerfile
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - REDIS_HOST=redis
+      - CACHE_EXPIRE_TIME=10000
+      - CACHE_CAPACITY=10
+    ports:
+      - 3000:3000
+
+  redis:
+    image: redis:alpine
+
+  redis-seed:
+    image: redis:alpine
+    volumes:
+      - ./redis_seed:/usr/redis_seed
+    command:
+      - cat /usr/redis_seed
+      - redis-cli -h redis --pipe
+  
